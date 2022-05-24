@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
@@ -11,7 +11,7 @@ const CourseSchema = new Schema(
     topic: {
       type: String,
       required: true,
-      trainer: { type: mongoose.Types.ObjectId, ref: 'Trainer' },
+      trainer: { type: mongoose.Types.ObjectId, ref: "Trainer" },
     },
     level: {
       type: Number,
@@ -22,7 +22,7 @@ const CourseSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 // deleting information which doesnt need to be visible
@@ -33,4 +33,4 @@ CourseSchema.methods.toJSON = function () {
   return courseObject;
 };
 
-export default model('Course', CourseSchema);
+export default model("Course", CourseSchema);

@@ -1,6 +1,5 @@
-import Course from '../models/CourseSchema';
-import Trainer from '../models/TrainerSchema';
-import mongoose from 'mongoose';
+import Course from "../models/CourseSchema.js";
+import mongoose from "mongoose";
 
 const toId = mongoose.Types.ObjectId;
 

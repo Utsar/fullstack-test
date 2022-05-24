@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
@@ -30,7 +30,7 @@ const LocationSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 // deleting information which doesnt need to be visible
@@ -41,4 +41,4 @@ LocationSchema.methods.toJSON = function () {
   return locationObject;
 };
 
-export default model('Location', LocationSchema);
+export default model("Location", LocationSchema);

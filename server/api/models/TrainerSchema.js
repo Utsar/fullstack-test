@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
@@ -21,7 +21,7 @@ const TrainerSchema = new Schema(
     },
     needWheelchair: {
       type: Boolean,
-      trainer: { type: mongoose.Types.ObjectId, ref: 'Trainer' },
+      trainer: { type: mongoose.Types.ObjectId, ref: "Trainer" },
     },
     city: {
       type: String,
@@ -32,7 +32,7 @@ const TrainerSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
-export default model('Trainer', TrainerSchema);
+export default model("Trainer", TrainerSchema);
