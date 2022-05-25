@@ -6,6 +6,8 @@ import trainerRouter from "./api/routes/trainers.js";
 import locationsRouter from "./api/routes/locations.js";
 import courseRouter from "./api/routes/courses.js";
 import teacherRouter from "./api/routes/teachers.js";
+import bookingRouter from "./api/routes/bookings.js";
+import listEndpoints from "express-list-endpoints";
 
 const server = express();
 const PORT = 3001;
@@ -21,6 +23,7 @@ server.use("/api/trainers", trainerRouter);
 server.use("/api/locations", locationsRouter);
 server.use("/api/courses", courseRouter);
 server.use("/api/teachers", teacherRouter);
+server.use("/api/bookings", bookingRouter);
 
 // ********** INITIALISING MONGOOSE CONNECTION **********
 const connect = async () => {
@@ -34,5 +37,7 @@ const connect = async () => {
 
 server.listen(PORT || 3001, () => {
   connect();
+  listEndpoints(server);
+  console.table(listEndpoints(server));
   console.log(`Server is running on port: ${PORT}`);
 });

@@ -1,10 +1,22 @@
 import express from "express";
-import { getTrainers } from "../controllers/trainer.js";
+import {
+  availableTrainer,
+  getByCompetencies,
+  getBySkills,
+  getDisabledTrainers,
+  getTrainers,
+} from "../controllers/trainer.js";
 import Trainer from "../models/TrainerSchema.js";
 
 const trainerRouter = express.Router();
 
 // get all
 trainerRouter.get("/", getTrainers);
+trainerRouter.get("/getBySkills", getBySkills);
+
+trainerRouter.get("/getByCompetencies", getByCompetencies);
+trainerRouter.get("/getBywheelchair", getDisabledTrainers);
+
+trainerRouter.get("/getAvailableTrainers", availableTrainer);
 
 export default trainerRouter;

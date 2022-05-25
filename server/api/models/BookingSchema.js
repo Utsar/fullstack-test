@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
@@ -26,10 +26,22 @@ const BookingSchema = new Schema(
       type: Array,
     },
     comments: {
-      type: String,
+      type: Array,
+    },
+    mandatory: {
+      type: Boolean,
     },
   },
-  { timestamps: new Date('<dd-mm-YYYY>') },
+  { timestamps: true }
 );
 
-export default model('Booking', BookingSchema);
+/* {
+  "course": "628a3b23570ec3058627ceb3",
+  "location": "628a3d9c570ec3058627ced5",
+  "trainer": "628a3f6a570ec3058627cf39",
+  "student": ["kris", "mike"],
+  "comments": []
+  
+}*/
+
+export default model("Booking", BookingSchema);
