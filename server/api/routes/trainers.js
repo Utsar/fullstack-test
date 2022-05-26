@@ -3,6 +3,7 @@ import {
   availableTrainer,
   getByCompetencies,
   getBySkills,
+  getComp,
   getDisabledTrainers,
   getTrainers,
 } from "../controllers/trainer.js";
@@ -18,5 +19,7 @@ trainerRouter.get("/getByCompetencies", getByCompetencies);
 trainerRouter.get("/getBywheelchair", getDisabledTrainers);
 
 trainerRouter.get("/getAvailableTrainers", availableTrainer);
+
+trainerRouter.get("/getComp", getComp);
 
 export default trainerRouter;

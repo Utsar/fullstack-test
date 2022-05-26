@@ -33,6 +33,27 @@ export const availableTrainer = async (req, res, next) => {
   }
 };
 
+export const getComp = async (req, res, next) => {
+  const queryNew = req.query.new;
+  const queryCompetency = req.query.competency;
+  try {
+    let trainer;
+    if (queryNew) {
+      trainer = await Trainer.find({ competencies: queryCompetency });
+    } else if (queryCompetency) {
+      trainer = await Trainer.find({
+        competencies: {
+          $in: [queryCompetency],
+        },
+      });
+    } else {
+      trainer = await Trainer.find();
+    }
+    res.send(trainer);
+  } catch (error) {
+    next(error);
+  }
+};
 // const decideToPushOrNot = (skills, comps) => {
 //   for (let i = 0; i < skills.lenght; i++) {
 //     if (comps.indexOf(skills[i]) !== -1) return false;

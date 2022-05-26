@@ -1,9 +1,9 @@
-import './courseInfo.css';
-import { Card, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import axios from 'axios';
-import frontend2 from '../../assets/images/frontend2.jpg';
+import "./courseInfo.css";
+import { Card, Button } from "react-bootstrap";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import frontend2 from "../../assets/images/frontend2.jpg";
 
 const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
   const [courseFE, setCourseFE] = useState([]);
@@ -15,7 +15,9 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
   // Frontendcourseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/courses?topic=Frontend');
+      const response = await axios.get(
+        "http://localhost:3001/api/courses?topic=Frontend"
+      );
       setCourseFE(response.data);
     };
     fetchData();
@@ -23,7 +25,9 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
   // Backendcourseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/courses?topic=Backend');
+      const response = await axios.get(
+        "http://localhost:3001/api/courses?topic=Backend"
+      );
       setCourseBE(response.data);
     };
     fetchData();
@@ -31,7 +35,9 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
   // Fullstackcourseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/courses?topic=Fullstack');
+      const response = await axios.get(
+        "http://localhost:3001/api/courses?topic=Fullstack"
+      );
       setCourseFS(response.data);
     };
     fetchData();
@@ -39,7 +45,9 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
   // Cloudcourseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/courses?topic=Cloud');
+      const response = await axios.get(
+        "http://localhost:3001/api/courses?topic=Cloud"
+      );
       setCourseCL(response.data);
     };
     fetchData();
@@ -47,22 +55,25 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
   // Securitydcourseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/courses?topic=Security');
+      const response = await axios.get(
+        "http://localhost:3001/api/courses?topic=Security"
+      );
       setCourseSEC(response.data);
     };
     fetchData();
   }, []);
+
   return (
     <>
       <div className="container">
         {frontend && (
           <div className="cardContainer">
-            {courseFE.map(c => (
-              <Card key={c._id} style={{ width: '18rem', margin: '10px 10px' }}>
+            {courseFE.map((c) => (
+              <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
                 <Card.Body>
                   <Card.Img variant="top" src={frontend2} />
                   <Card.Title>{c.topic}</Card.Title>
-                  <Card.Text>{c.name}</Card.Text>
+                  <Card.Text>Course name: {c.name}</Card.Text>
                   <Card.Text>Difficulty level: {c.level}</Card.Text>
                   <Card.Text>Course duration: {c.duration} days</Card.Text>
                   <Button variant="primary">Go somewhere</Button>
@@ -73,8 +84,8 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
         )}
         {backend && (
           <div className="cardContainer">
-            {courseBE.map(c => (
-              <Card key={c._id} style={{ width: '18rem', margin: '10px 10px' }}>
+            {courseBE.map((c) => (
+              <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
                 <Card.Body>
                   <Card.Img variant="top" src={frontend2} />
                   <Card.Title>{c.topic}</Card.Title>
@@ -89,8 +100,8 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
         )}
         {fullstack && (
           <div className="cardContainer">
-            {courseFS.map(c => (
-              <Card key={c._id} style={{ width: '18rem', margin: '10px 10px' }}>
+            {courseFS.map((c) => (
+              <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
                 <Card.Body>
                   <Card.Img variant="top" src={frontend2} />
                   <Card.Title>{c.topic}</Card.Title>
@@ -105,8 +116,8 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
         )}
         {cloud && (
           <div className="cardContainer">
-            {courseCL.map(c => (
-              <Card key={c._id} style={{ width: '18rem', margin: '10px 10px' }}>
+            {courseCL.map((c) => (
+              <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
                 <Card.Body>
                   <Card.Img variant="top" src={frontend2} />
                   <Card.Title>{c.topic}</Card.Title>
@@ -121,8 +132,8 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
         )}
         {security && (
           <div className="cardContainer">
-            {courseSEC.map(c => (
-              <Card key={c._id} style={{ width: '18rem', margin: '10px 10px' }}>
+            {courseSEC.map((c) => (
+              <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
                 <Card.Body>
                   <Card.Img variant="top" src={frontend2} />
                   <Card.Title>{c.topic}</Card.Title>

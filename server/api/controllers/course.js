@@ -1,4 +1,4 @@
-import Course from '../models/CourseSchema.js';
+import Course from "../models/CourseSchema.js";
 
 export const getCourses = async (req, res, next) => {
   try {
@@ -19,12 +19,12 @@ export const getCourse = async (req, res, next) => {
 };
 
 export const countByCourse = async (req, res, next) => {
-  const topics = req.query.topics.split(',');
+  const topics = req.query.topics.split(",");
   try {
     const list = await Promise.all(
-      topics.map(topic => {
+      topics.map((topic) => {
         return Course.countDocuments({ topic: topic });
-      }),
+      })
     );
     res.status(200).send(list);
   } catch (error) {
