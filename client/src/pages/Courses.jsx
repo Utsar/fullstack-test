@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Button, Card, Dropdown } from "react-bootstrap";
+
 import { useParams } from "react-router-dom";
 import CourseDetails from "../components/courseDetails/CourseDetails";
 

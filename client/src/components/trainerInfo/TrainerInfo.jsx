@@ -1,9 +1,7 @@
 import "./trainerInfo.css";
-import { Card, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import frontend2 from "../../assets/images/frontend2.jpg";
 
 const TrainerInfo = ({
   frontendTrainer,
