@@ -63,6 +63,21 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
     fetchData();
   }, []);
 
+  const createBooking = async (e, c) => {
+    e.preventDefault();
+    const payload = {
+      course: c._id,
+      location: "628a3d9c570ec3058627ced5",
+      trainer: "628a3f6a570ec3058627cf39",
+      student: ["kris", "mike"],
+      comments: [],
+    };
+    const response = await axios.post(
+      "http://localhost:3001/api/bookings",
+      payload
+    );
+  };
+
   return (
     <>
       <div className="container">
@@ -76,7 +91,12 @@ const CourseInfo = ({ frontend, backend, fullstack, cloud, security }) => {
                   <Card.Text>Course name: {c.name}</Card.Text>
                   <Card.Text>Difficulty level: {c.level}</Card.Text>
                   <Card.Text>Course duration: {c.duration} days</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Button
+                    variant="primary"
+                    onClick={(e) => createBooking(e, c)}
+                  >
+                    Go somewhere
+                  </Button>
                 </Card.Body>
               </Card>
             ))}

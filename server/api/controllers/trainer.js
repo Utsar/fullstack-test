@@ -1,6 +1,8 @@
 import Trainer from "../models/TrainerSchema.js";
 import Course from "../models/CourseSchema.js";
 
+// get all trainers
+
 export const getTrainers = async (req, res, next) => {
   try {
     const trainers = await Trainer.find();
@@ -10,32 +12,13 @@ export const getTrainers = async (req, res, next) => {
   }
 };
 
-export const getBySkills = async (req, res, next) => {
-  const { skills } = req.body;
-  try {
-    const trainer = await Trainer.find().where("competencies").in(skills);
-    res.send(trainer);
-  } catch (error) {
-    next(error);
-  }
-};
-
-// get course id by available trainer
-export const availableTrainer = async (req, res, next) => {
-  const { courseId } = req.body;
-  try {
-    const course = await Course.findById(courseId);
-    const { topic } = course;
-    const trainer = await Trainer.find().where("competencies").in(topic);
-    res.send(trainer);
-  } catch (error) {
-    next(error);
-  }
-};
+// get trainer by competence
 
 export const getComp = async (req, res, next) => {
   const queryNew = req.query.new;
-  const queryCompetency = req.query.competency;
+  const queryCompetency =
+    req.query.competency.charAt(0).toUpperCase() +
+    req.query.competency.slice(1);
   try {
     let trainer;
     if (queryNew) {
@@ -54,6 +37,31 @@ export const getComp = async (req, res, next) => {
     next(error);
   }
 };
+
+// tests leave here for now
+
+// get course id by available trainer
+
+// export const availableTrainer = async (req, res, next) => {
+//   const { courseId } = req.body;
+//   try {
+//     const course = await Course.findById(courseId);
+//     const { topic } = course;
+//     const trainer = await Trainer.find().where("competencies").in(topic);
+//     res.send(trainer);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+// export const getBySkills = async (req, res, next) => {
+//   const { skills } = req.body;
+//   try {
+//     const trainer = await Trainer.find().where("competencies").in(skills);
+//     res.send(trainer);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 // const decideToPushOrNot = (skills, comps) => {
 //   for (let i = 0; i < skills.lenght; i++) {
 //     if (comps.indexOf(skills[i]) !== -1) return false;
@@ -73,19 +81,20 @@ export const getComp = async (req, res, next) => {
 //   }
 // }
 
-export const getByCompetencies = async (req, res, next) => {
-  const skills = req.query.skills.split(",");
-  try {
-    const list = await Promise.all(
-      skills.map((skill) => {
-        return Trainer.countDocuments({ competencies: skill });
-      })
-    );
-    res.status(200).send(list);
-  } catch (error) {
-    next(error);
-  }
-};
+// get course by competence and return an array of trainers
+// export const getByCompetencies = async (req, res, next) => {
+//   const skills = req.query.skills.split(",");
+//   try {
+//     const list = await Promise.all(
+//       skills.map((skill) => {
+//         return Trainer.countDocuments({ competencies: skill });
+//       })
+//     );
+//     res.status(200).send(list);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 // export const countByCompentence = async (req,res,next)=>{
 //   const competencies = req.query.competencies.split(",")
@@ -99,13 +108,15 @@ export const getByCompetencies = async (req, res, next) => {
 //   }
 // }
 
-export const getDisabledTrainers = async (req, res, next) => {
-  try {
-    const trainers = await Trainer.find({
-      needWheelchair: true,
-    });
-    res.send(trainers);
-  } catch (error) {
-    next(error);
-  }
-};
+// get trainers by accessibility
+
+// export const getDisabledTrainers = async (req, res, next) => {
+//   try {
+//     const trainers = await Trainer.find({
+//       needWheelchair: true,
+//     });
+//     res.send(trainers);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
