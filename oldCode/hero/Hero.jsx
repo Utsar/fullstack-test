@@ -1,9 +1,9 @@
-import './hero.css';
-import { menuData } from '../../assets/menuItems';
-import { Card, Button } from 'react-bootstrap';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import axios from 'axios';
+import "./hero.css";
+import { menuData } from "../../client/src/assets/menuItems";
+import { Card, Button } from "react-bootstrap";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const Hero = ({ trainers, locations, courses, home }) => {
   const [course, setCourse] = useState([]);
@@ -13,7 +13,7 @@ const Hero = ({ trainers, locations, courses, home }) => {
   // courseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/locations');
+      const response = await axios.get("http://localhost:3001/api/locations");
       setLocation(response.data);
     };
     fetchData();
@@ -22,7 +22,7 @@ const Hero = ({ trainers, locations, courses, home }) => {
   // trainers
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/trainers');
+      const response = await axios.get("http://localhost:3001/api/trainers");
       setTrainer(response.data);
     };
     fetchData();
@@ -31,7 +31,7 @@ const Hero = ({ trainers, locations, courses, home }) => {
   // courseses
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/api/courses');
+      const response = await axios.get("http://localhost:3001/api/courses");
       setCourse(response.data);
     };
     fetchData();
@@ -53,15 +53,20 @@ const Hero = ({ trainers, locations, courses, home }) => {
           {trainers && (
             <div className="trainersContainer">
               <div className="cardComponent">
-                {trainer.map(t => (
-                  <Card key={t._id} style={{ width: '18rem', margin: '10px 10px' }}>
+                {trainer.map((t) => (
+                  <Card
+                    key={t._id}
+                    style={{ width: "18rem", margin: "10px 10px" }}
+                  >
                     <Card.Body>
                       <Card.Title>{t.compentencies}</Card.Title>
                       <Card.Text>{t.firstName}</Card.Text>
                       <Card.Text>{t.lastName}</Card.Text>
                       <Card.Text>City: {t.city}</Card.Text>
                       <Card.Text>Country: {t.country}</Card.Text>
-                      <Card.Text>Wheelchair accessible: {t.wheelchairAccessible}</Card.Text>
+                      <Card.Text>
+                        Wheelchair accessible: {t.wheelchairAccessible}
+                      </Card.Text>
                       <Button variant="primary">Go somewhere</Button>
                     </Card.Body>
                   </Card>
@@ -71,13 +76,18 @@ const Hero = ({ trainers, locations, courses, home }) => {
           )}
           {locations && (
             <div className="cardComponent">
-              {location.map(l => (
-                <Card key={l._id} style={{ width: '18rem', margin: '10px 10px' }}>
+              {location.map((l) => (
+                <Card
+                  key={l._id}
+                  style={{ width: "18rem", margin: "10px 10px" }}
+                >
                   <Card.Body>
                     <Card.Title>{l.name}</Card.Title>
                     <Card.Text>City: {l.city}</Card.Text>
                     <Card.Text>Country: {l.country}</Card.Text>
-                    <Card.Text>Wheelchair accessible: {l.wheelchairAccessible}</Card.Text>
+                    <Card.Text>
+                      Wheelchair accessible: {l.wheelchairAccessible}
+                    </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>
                 </Card>
@@ -87,8 +97,11 @@ const Hero = ({ trainers, locations, courses, home }) => {
           <>
             {courses && (
               <div className="cardComponent">
-                {course.map(c => (
-                  <Card key={c._id} style={{ width: '18rem', margin: '10px 10px' }}>
+                {course.map((c) => (
+                  <Card
+                    key={c._id}
+                    style={{ width: "18rem", margin: "10px 10px" }}
+                  >
                     <Card.Body>
                       <Card.Title>{c.topic}</Card.Title>
                       <Card.Text>{c.name}</Card.Text>

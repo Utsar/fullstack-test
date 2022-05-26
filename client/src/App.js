@@ -4,11 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import CoursesList from "./components/courses/CoursesList";
 
-import Cloud from "./pages/Cloud";
-import Fullstack from "./pages/Fullstack";
-import Backend from "./pages/Backend";
-import Security from "./pages/Security";
-import Frontend from "./pages/frontEnd/Frontend";
 import Courses from "./pages/Courses";
 
 const App = () => {
