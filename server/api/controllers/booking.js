@@ -9,6 +9,7 @@ export const getBookings = async (req, res, next) => {
     next(error);
   }
 };
+
 // get single booking
 export const getBooking = async (req, res, next) => {
   try {
@@ -18,6 +19,7 @@ export const getBooking = async (req, res, next) => {
     next(error);
   }
 };
+
 // create booking
 export const createBooking = async (req, res, next) => {
   try {
@@ -27,6 +29,7 @@ export const createBooking = async (req, res, next) => {
     next(error);
   }
 };
+
 // create comments
 
 export const createComments = async (req, res, next) => {

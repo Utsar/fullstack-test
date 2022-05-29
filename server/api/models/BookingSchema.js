@@ -12,6 +12,9 @@ const BookingSchema = new Schema(
       type: String,
       required: true,
     },
+    city: {
+      type: String,
+    },
     trainer: {
       type: String,
       required: true,
@@ -26,7 +29,7 @@ const BookingSchema = new Schema(
       type: Array,
     },
     comments: {
-      type: Array,
+      type: String,
     },
     mandatory: {
       type: Boolean,
