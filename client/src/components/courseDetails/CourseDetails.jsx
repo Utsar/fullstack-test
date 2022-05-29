@@ -3,7 +3,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button, Card, Dropdown, Form } from "react-bootstrap";
-import { images } from "../../assets/menuItems.js";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CourseDetails = ({ c, trainer, location }) => {
   const [selectedTrainer, setSelectedTrainer] = useState({});
@@ -12,6 +13,27 @@ const CourseDetails = ({ c, trainer, location }) => {
   const [cityList, setCityList] = useState([]);
   const [comment, setComment] = useState("");
   const [mandatory, setMandatory] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const newStartDate = startDate.toISOString().slice(0, 10);
+  // console.log(newStartDate);
+
+  Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
+  // const selectEndDate = (startDate) => {
+  //   setEndDate(startDate.addDays(c.duration));
+  // };
+
+  // console.log("this should be new end date", endDate);
+
+  // console.log("this is date prototype", startDate.addDays(1));
+
+  // const newEndDate = ()
 
   const selectTrainer = (e, trainer) => {
     e.preventDefault();
@@ -25,21 +47,17 @@ const CourseDetails = ({ c, trainer, location }) => {
   const selectCity = (e, city) => {
     e.preventDefault();
     setSelectedCity(city);
-    console.log(city);
-    console.log(selectedCity);
   };
 
   const selectComment = (e) => {
     let comment = e.target.value;
     setComment(comment);
-    console.log(comment);
   };
 
   const selectMandatory = (e) => {
     let checked = e.target.checked;
     setMandatory(checked);
   };
-  console.log(mandatory);
 
   const createBooking = async (
     trainer,
@@ -47,7 +65,9 @@ const CourseDetails = ({ c, trainer, location }) => {
     c,
     city,
     comment,
-    mandatory
+    mandatory,
+    newStartDate,
+    endDate
   ) => {
     let payload = {
       course: c._id,
@@ -57,6 +77,8 @@ const CourseDetails = ({ c, trainer, location }) => {
       student: [],
       comments: comment,
       mandatory: mandatory,
+      startDate: newStartDate,
+      endDate: new Date(newStartDate).addDays(c.duration),
     };
 
     await axios.post("http://localhost:3001/api/bookings", payload);
@@ -67,6 +89,13 @@ const CourseDetails = ({ c, trainer, location }) => {
 
     setCityList([...new Set(location.map((l) => l.city))]);
   }, [location]);
+
+  // add end date
+  useEffect(() => {
+    setEndDate(startDate.addDays(c.duration));
+  }, [startDate, c.duration]);
+
+  console.log("this should be new end date", endDate);
   return (
     <>
       <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
@@ -86,7 +115,7 @@ const CourseDetails = ({ c, trainer, location }) => {
           )}
 
           {/* <Card.Text>Course duration: {c.duration} days</Card.Text> */}
-          {cityList.length != 0 && (
+          {cityList.length !== 0 && (
             // <p> citylist goes here</p>
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -195,6 +224,11 @@ const CourseDetails = ({ c, trainer, location }) => {
               <Form.Control type="text" onChange={(e) => selectComment(e)} />
             </Form.Group>
           </Form>
+          <DatePicker
+            dateFormat="dd/MM/yyyy"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
           <Button
             variant="primary"
             onClick={(e) =>
@@ -204,7 +238,9 @@ const CourseDetails = ({ c, trainer, location }) => {
                 c,
                 selectedCity,
                 comment,
-                mandatory
+                mandatory,
+                newStartDate,
+                endDate
               )
             }
           >
