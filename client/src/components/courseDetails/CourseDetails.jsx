@@ -19,6 +19,7 @@ const CourseDetails = ({ c, trainer, location }) => {
   const newStartDate = startDate.toISOString().slice(0, 10);
   // console.log(newStartDate);
 
+  // creates new date function to add days to the start date
   Date.prototype.addDays = function (days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
@@ -66,8 +67,7 @@ const CourseDetails = ({ c, trainer, location }) => {
     city,
     comment,
     mandatory,
-    newStartDate,
-    endDate
+    newStartDate
   ) => {
     let payload = {
       course: c._id,
@@ -117,12 +117,21 @@ const CourseDetails = ({ c, trainer, location }) => {
           {/* <Card.Text>Course duration: {c.duration} days</Card.Text> */}
           {cityList.length !== 0 && (
             // <p> citylist goes here</p>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown style={{ marginBottom: "10px" }}>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                style={{ minWidth: "175px" }}
+              >
                 {selectedCity ? selectedCity : "Select City"}
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu
+                style={{
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              >
                 {cityList.map((city) => (
                   <Dropdown.Item onClick={(e) => selectCity(e, city)}>
                     {city}
@@ -132,14 +141,23 @@ const CourseDetails = ({ c, trainer, location }) => {
             </Dropdown>
           )}
           {selectedCity !== "" && (
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown style={{ marginBottom: "10px" }}>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                style={{ minWidth: "175px" }}
+              >
                 {selectedLocation.name
                   ? selectedLocation.name
                   : "Select Location"}
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu
+                style={{
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              >
                 {location
                   .filter((e) => e.city === selectedCity)
                   .map((l) => (
@@ -154,14 +172,23 @@ const CourseDetails = ({ c, trainer, location }) => {
             </Dropdown>
           )}
           {selectedLocation.city && (
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown style={{ marginBottom: "10px" }}>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                style={{ minWidth: "175px" }}
+              >
                 {selectedTrainer.firstName
                   ? selectedTrainer.firstName + " " + selectedTrainer.lastName
                   : "Select Trainer"}
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
+              <Dropdown.Menu
+                style={{
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              >
                 {trainer.map((t) => {
                   if (selectedLocation.wheelchairAccessible === true)
                     return (
@@ -183,7 +210,12 @@ const CourseDetails = ({ c, trainer, location }) => {
                     );
                 })}
               </Dropdown.Menu>
-              <Dropdown.Menu>
+              <Dropdown.Menu
+                style={{
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              >
                 {trainer.map((t) => {
                   if (selectedLocation.wheelchairAccessible === true)
                     return (
@@ -224,29 +256,31 @@ const CourseDetails = ({ c, trainer, location }) => {
               <Form.Control type="text" onChange={(e) => selectComment(e)} />
             </Form.Group>
           </Form>
+
           <DatePicker
             dateFormat="dd/MM/yyyy"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
-          <Button
-            variant="primary"
-            onClick={(e) =>
-              createBooking(
-                selectedLocation,
-                selectedTrainer,
-                c,
-                selectedCity,
-                comment,
-                mandatory,
-                newStartDate,
-                endDate
-              )
-            }
-          >
-            Book now
-          </Button>
         </Card.Body>
+        <Button
+          style={{ margin: "10px 10px" }}
+          variant="primary"
+          onClick={(e) =>
+            createBooking(
+              selectedLocation,
+              selectedTrainer,
+              c,
+              selectedCity,
+              comment,
+              mandatory,
+              newStartDate,
+              endDate
+            )
+          }
+        >
+          Book now
+        </Button>
       </Card>
     </>
   );
