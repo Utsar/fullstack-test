@@ -60,20 +60,12 @@ const CourseDetails = ({ c, trainer, location }) => {
     setMandatory(checked);
   };
 
-  const createBooking = async (
-    trainer,
-    location,
-    c,
-    city,
-    comment,
-    mandatory,
-    newStartDate
-  ) => {
+  const createBooking = async (c, city, comment, mandatory, newStartDate) => {
     let payload = {
-      course: c._id,
+      course: c.topic,
       city: city,
-      location: location._id,
-      trainer: trainer._id,
+      location: selectedLocation.name,
+      trainer: selectedTrainer.firstName + " " + selectedTrainer.lastName,
       student: [],
       comments: comment,
       mandatory: mandatory,
@@ -95,7 +87,6 @@ const CourseDetails = ({ c, trainer, location }) => {
     setEndDate(startDate.addDays(c.duration));
   }, [startDate, c.duration]);
 
-  console.log("this should be new end date", endDate);
   return (
     <>
       <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>

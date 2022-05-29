@@ -8,10 +8,11 @@ const BookingSchema = new Schema(
       type: String,
       required: true,
     },
+
     location: {
       type: String,
-      required: true,
     },
+
     city: {
       type: String,
     },
@@ -19,6 +20,7 @@ const BookingSchema = new Schema(
       type: String,
       required: true,
     },
+
     startDate: {
       type: Date,
     },
