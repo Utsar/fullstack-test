@@ -35,6 +35,7 @@ const Bookings = () => {
 
   const [bookings, setBookings] = useState([]);
   const [students, setStudents] = useState([]);
+  const [upcomingBooking, setUpcomingBookings] = useState([]);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -54,11 +55,20 @@ const Bookings = () => {
     fetchStudents();
   }, []);
 
+  // filter upcoming bookings only
+  useEffect(() => {
+    const futureBookings = bookings.filter((booking) => {
+      return new Date(booking.startDate) > new Date();
+    });
+    setUpcomingBookings(futureBookings);
+    console.log(futureBookings);
+  }, [bookings]);
+
   return (
     <>
       <Container className="auctionsContainer">
         <Row className="auctions">
-          {bookings.map((booking, index) => (
+          {upcomingBooking.map((booking, index) => (
             <Table
               responsive
               striped
