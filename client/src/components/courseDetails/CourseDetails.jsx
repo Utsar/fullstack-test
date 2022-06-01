@@ -48,11 +48,13 @@ const CourseDetails = ({ c, trainer, location }) => {
   const selectCity = (e, city) => {
     e.preventDefault();
     setSelectedCity(city);
+    console.log(city);
   };
 
   const selectComment = (e) => {
     let comment = e.target.value;
     setComment(comment);
+    console.log(comment);
   };
 
   const selectMandatory = (e) => {
@@ -60,17 +62,24 @@ const CourseDetails = ({ c, trainer, location }) => {
     setMandatory(checked);
   };
 
-  const createBooking = async (c, city, comment, mandatory, newStartDate) => {
+  const createBooking = async (
+    c,
+    city,
+    location,
+    selectComment,
+    mandatory,
+    newStartDate
+  ) => {
     let payload = {
       course: c.topic,
-      city: city,
+      city: selectedCity,
       location: selectedLocation.name,
       trainer: selectedTrainer.firstName + " " + selectedTrainer.lastName,
+      startDate: newStartDate,
+      endDate: new Date(newStartDate).addDays(c.duration),
       student: [],
       comments: comment,
       mandatory: mandatory,
-      startDate: newStartDate,
-      endDate: new Date(newStartDate).addDays(c.duration),
     };
 
     await axios.post("http://localhost:3001/api/bookings", payload);
@@ -259,14 +268,14 @@ const CourseDetails = ({ c, trainer, location }) => {
           variant="primary"
           onClick={(e) =>
             createBooking(
-              selectedLocation,
-              selectedTrainer,
               c,
+              selectedLocation,
               selectedCity,
-              comment,
+              selectedTrainer,
               mandatory,
               newStartDate,
-              endDate
+              endDate,
+              comment
             )
           }
         >
