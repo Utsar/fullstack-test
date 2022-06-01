@@ -1,3 +1,4 @@
+import "./course.css";
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
@@ -12,46 +13,50 @@ const Courses = () => {
 
   // Courses
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCourses = async () => {
       const response = await axios.get(
         `http://localhost:3001/api/courses/courseByTopic?topic=${params.courseTopic}`
       );
       setCourse(response.data);
     };
-    fetchData();
+    fetchCourses();
   }, []);
+
   // Trainers
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTrainers = async () => {
       const response = await axios.get(
         `http://localhost:3001/api/trainers/getComp?competency=${params.courseTopic}`
       );
 
       setTrainer(response.data);
     };
-    fetchData();
+    fetchTrainers();
   }, []);
+
   // Locations
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchLocations = async () => {
       const response = await axios.get(`http://localhost:3001/api/locations`);
-      console.log(response.data);
+
       setLocation(response.data);
     };
-    fetchData();
+    fetchLocations();
   }, []);
 
   let params = useParams();
   return (
     <>
-      {course.map((c) => (
-        <CourseDetails
-          key={c._id}
-          c={c}
-          trainer={trainer}
-          location={location}
-        />
-      ))}
+      <div className="container">
+        {course.map((c) => (
+          <CourseDetails
+            key={c._id}
+            c={c}
+            trainer={trainer}
+            location={location}
+          />
+        ))}
+      </div>
       <h1>{params.courseTopic}</h1>;
     </>
   );
