@@ -115,7 +115,7 @@ const CourseDetails = ({ c, trainer, location, student }) => {
               id="dropdown-basic"
               style={{ minWidth: "175px" }}
             >
-              Select Students
+              Add Students
             </Dropdown.Toggle>
             <Dropdown.Menu
               style={{

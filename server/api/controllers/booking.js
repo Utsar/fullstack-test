@@ -43,12 +43,12 @@ export const createComments = async (req, res, next) => {
   }
 };
 
-// create comments
+// create students
 
-export const updateComments = async (req, res, next) => {
+export const createStudents = async (req, res, next) => {
   try {
     const booking = await Booking.findByIdAndUpdate(req.params.id, {
-      $push: { comments: req.body.comment },
+      $push: { students: req.body.student },
     });
     res.status(201).send(booking);
   } catch (error) {
