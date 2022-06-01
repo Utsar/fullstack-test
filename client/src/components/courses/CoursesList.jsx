@@ -15,7 +15,8 @@ const CoursesList = () => {
               <div className="infoWrap">
                 <img className="image" src={i.src} alt={i.alt} />
                 <h2 className="courseDescription">{i.topic}</h2>
-                <Link className="link" to="/courses/frontend">
+
+                <Link className="link" to={i.link}>
                   <p className="viewCourses">{i.desc}</p>
                 </Link>
               </div>

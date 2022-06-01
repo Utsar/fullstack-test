@@ -18,6 +18,7 @@ export const images = [
     topic: "Frontend",
     desc: "Be the visual Wizard!",
     alt: "Frontend",
+    link: "/courses/Frontend",
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ export const images = [
     topic: "Backend",
     desc: "Welcome to the dark side!",
     alt: "Backend",
+    link: "/courses/Backend",
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ export const images = [
     topic: "Fullstack",
     desc: "All or nothing!",
     alt: "Fullstack",
+    link: "/courses/Fullstack",
   },
   {
     id: 4,
@@ -39,6 +42,7 @@ export const images = [
     topic: "Cloud",
     desc: "Everything is better in the cloud",
     alt: "cloud",
+    link: "/courses/Cloud",
   },
   {
     id: 5,
@@ -46,5 +50,6 @@ export const images = [
     topic: "Security",
     desc: "Lock it up!",
     alt: "security",
+    link: "/courses/Security",
   },
 ];
