@@ -10,6 +10,7 @@ const Courses = () => {
   const [course, setCourse] = useState([]);
   const [trainer, setTrainer] = useState([]);
   const [location, setLocation] = useState([]);
+  const [student, setStudent] = useState([]);
 
   // Courses
   useEffect(() => {
@@ -43,7 +44,16 @@ const Courses = () => {
     };
     fetchLocations();
   }, []);
+  // students
+  useEffect(() => {
+    const fetchStudents = async () => {
+      const response = await axios.get(`http://localhost:3001/api/students`);
 
+      setStudent(response.data);
+      console.log("This is list of students", response.data);
+    };
+    fetchStudents();
+  }, []);
   let params = useParams();
   return (
     <>
@@ -54,6 +64,7 @@ const Courses = () => {
             c={c}
             trainer={trainer}
             location={location}
+            student={student}
           />
         ))}
       </div>

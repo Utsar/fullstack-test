@@ -42,3 +42,16 @@ export const createComments = async (req, res, next) => {
     next(error);
   }
 };
+
+// create comments
+
+export const updateComments = async (req, res, next) => {
+  try {
+    const booking = await Booking.findByIdAndUpdate(req.params.id, {
+      $push: { comments: req.body.comment },
+    });
+    res.status(201).send(booking);
+  } catch (error) {
+    next(error);
+  }
+};

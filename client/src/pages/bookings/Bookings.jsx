@@ -2,13 +2,7 @@ import axios from "axios";
 
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  Container,
-  Dropdown,
-  DropdownButton,
-  Row,
-  Table,
-} from "react-bootstrap";
+import { Container, Dropdown, Row, Table } from "react-bootstrap";
 
 const Bookings = () => {
   Date.prototype.toShortFormat = function () {
@@ -105,7 +99,9 @@ const Bookings = () => {
                         }}
                       >
                         {students.map((student) => (
-                          <Dropdown.Item>{student.firstName}</Dropdown.Item>
+                          <Dropdown.Item>
+                            {student.firstName + " " + student.lastName}
+                          </Dropdown.Item>
                         ))}
                       </Dropdown.Menu>
                     </Dropdown>
