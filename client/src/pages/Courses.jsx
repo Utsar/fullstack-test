@@ -14,7 +14,7 @@ const Courses = () => {
   const [student, setStudent] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [coursesPerPage] = useState(4);
+  const [coursesPerPage] = useState(3);
 
   console.log(course);
   // Courses
@@ -84,12 +84,13 @@ const Courses = () => {
           />
         ))}
       </div>
-      <Paginations
-        coursesPerPage={coursesPerPage}
-        totalCourses={course.length}
-        paginate={paginate}
-      />
-      <h1>{params.courseTopic}</h1>;
+      <div className="pagination">
+        <Paginations
+          coursesPerPage={coursesPerPage}
+          totalCourses={course.length}
+          paginate={paginate}
+        />
+      </div>
     </>
   );
 };

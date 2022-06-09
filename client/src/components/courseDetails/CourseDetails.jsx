@@ -20,7 +20,7 @@ const CourseDetails = ({ c, trainer, location, student }) => {
   const newStartDate = startDate.toISOString().slice(0, 10);
   // creates new date function to add days to the start date
   Date.prototype.addDays = function (days) {
-    var date = new Date(this.valueOf());
+    let date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
   };

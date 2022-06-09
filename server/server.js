@@ -12,6 +12,7 @@ import listEndpoints from "express-list-endpoints";
 const server = express();
 const PORT = 3001;
 const MONGO = process.env.MONGODB;
+const NOWIFI = process.env.PLANE;
 
 // ****************** MIDDLEWARES ******************
 server.use(express.json());
