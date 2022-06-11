@@ -72,6 +72,13 @@ const Courses = () => {
 
   return (
     <>
+      <div className="pagination">
+        <Paginations
+          coursesPerPage={coursesPerPage}
+          totalCourses={course.length}
+          paginate={paginate}
+        />
+      </div>
       <div className="container">
         {currentCourses.map((c) => (
           <CourseDetails
@@ -83,13 +90,6 @@ const Courses = () => {
             courses={currentCourses}
           />
         ))}
-      </div>
-      <div className="pagination">
-        <Paginations
-          coursesPerPage={coursesPerPage}
-          totalCourses={course.length}
-          paginate={paginate}
-        />
       </div>
     </>
   );

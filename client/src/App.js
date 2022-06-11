@@ -10,13 +10,15 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import { useSelector } from "react-redux";
 import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/home/Home";
+import StudentRegister from "./pages/studentRegister/StudentRegister";
 
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CoursesList />} />
+        <Route path="/" element={<Home />} />
         <Route path="courses/:courseTopic" element={<Courses />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/register" element={<Register />} />

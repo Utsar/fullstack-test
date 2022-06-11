@@ -14,7 +14,8 @@ const CoursesList = () => {
                   <img className="image" src={i.src} alt={i.alt} />
                   <h2 className="courseDescription">{i.topic}</h2>
                   <Link className="link" to={i.link}>
-                    <p className="viewCourses">{i.desc}</p>
+                    {/* <p className="viewCourses">{i.desc}</p> */}
+                    <button className="button">Find out more</button>
                   </Link>
                 </div>
               </div>

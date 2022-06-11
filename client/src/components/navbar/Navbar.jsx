@@ -6,7 +6,7 @@ const Navbar = () => {
       <div className="container">
         <div className="navItems">
           <div className="navLeft">
-            <h1 className="navLogo">.Utsar|Bookings</h1>
+            <h1 className="navLogo">.Utsar | Bookings</h1>
           </div>
           <div className="navCenter">
             <div className="adminOptions">Brwose upcoming bookings</div>

@@ -7,7 +7,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector((state) => state.user);
+  const { isFetching } = useSelector((state) => state.user);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div className="loginContainer">
       <div className="wrapper">
         <h1 className="title">Login</h1>
         <form className="form">
@@ -29,7 +29,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            className="loginButton"
+            className="log-inButton"
             onClick={handleClick}
             disabled={isFetching}
           >

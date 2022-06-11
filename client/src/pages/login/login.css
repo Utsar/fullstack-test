@@ -1,6 +1,8 @@
-.container{
+.loginContainer{
+
   width: 100vw;
   height: 100vh;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,8 +31,8 @@ input{
   padding: 10px;
 }
 
-.loginButton{
-  width: 40%;
+.log-inButton{
+  width: 100%;
   border: none;
   padding: 15px 20px;
   background-color: teal;

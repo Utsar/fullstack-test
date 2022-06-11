@@ -16,14 +16,7 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(
-      firstName.current.value,
-      lastName.current.value,
-      email.current.value,
 
-      password.current.value,
-      confirmPassword.current.value
-    );
     if (confirmPassword.current.value !== password.current.value) {
       password.current.setCustomValidity("Passwords do not match");
     } else {
@@ -44,7 +37,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
+    <div className="registeContainer">
       <div className="wrapper">
         <h1 className="title">CREATE AN ACCOUNT</h1>
         <form className="form">
@@ -52,8 +45,12 @@ const Register = () => {
           <input placeholder="last name" ref={lastName} />
           <input placeholder="username" ref={username} />
           <input placeholder="email" ref={email} />
-          <input placeholder="password" ref={password} />
-          <input placeholder="confirm password" ref={confirmPassword} />
+          <input placeholder="password" type="password" ref={password} />
+          <input
+            placeholder="confirm password"
+            type="password"
+            ref={confirmPassword}
+          />
 
           <button className="registerButton" onClick={handleClick}>
             CREATE
