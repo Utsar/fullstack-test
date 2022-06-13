@@ -6,6 +6,8 @@ import {
   getBookings,
 } from "../controllers/booking.js";
 
+import { verifyAndAdmin } from "../controllers/verifyToken.js";
+
 const bookingRouter = express.Router();
 
 bookingRouter.get("/", getBookings);

@@ -1,25 +1,22 @@
 .section{
     width: 100%;
-    height: 100%;
-    /* padding: calc((100vw - 1400px)/2); */
-
+    height: calc(100vh - 60px);
 }
 .container {
     height: 100%;
     width: 100%;
     padding: 2rem 1rem;
-}
-.heading {
-    font-size: 1.5rem;
-    padding: 2rem 1rem;
-    margin-bottom: 20px
+
 }
 .infoRow{
     display: flex;
     flex-direction: row;
-    padding: 1rem 0rem;
+    padding: 2rem 0rem;
 }
 .infoWrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 0rem 1rem;
     min-height: 550px;
     height: 100%;
@@ -39,6 +36,7 @@
 }
 .link{
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-decoration: none;
     color: #000d1a;
@@ -48,8 +46,25 @@
   
 }
 .link:hover{
-   
-      transform: translateY(-2px);
-    
+      transform: translateY(-2px); 
+      text-decoration: none;  
+      color: #000d1a;
 
+}
+.button{
+    background:#000d1a;
+    white-space: nowrap;
+    outline: none;
+    border: none;
+    min-width: 100px;
+    max-width: 200px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 24px;
+    color: #fff;
+    font-size: 14px;
 }

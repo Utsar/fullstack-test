@@ -42,3 +42,16 @@ export const createComments = async (req, res, next) => {
     next(error);
   }
 };
+
+// create students
+
+export const createStudents = async (req, res, next) => {
+  try {
+    const booking = await Booking.findByIdAndUpdate(req.params.id, {
+      $push: { students: req.body.student },
+    });
+    res.status(201).send(booking);
+  } catch (error) {
+    next(error);
+  }
+};

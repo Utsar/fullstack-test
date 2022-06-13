@@ -1,0 +1,40 @@
+.registeContainer {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper{
+    width: 40%;
+    padding: 20px;
+    background-color: white;
+}
+
+.title{
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+}
+input{
+    flex: 1;
+    min-width: 40%;
+    margin: 20px 10px 0px 0px;
+    padding: 10px;
+}
+
+.registerButton{
+    width: 100%;
+    border: none;
+    padding: 15px 20px;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+}
+

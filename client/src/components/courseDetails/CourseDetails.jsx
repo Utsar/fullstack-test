@@ -6,7 +6,7 @@ import { Button, Card, Dropdown, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const CourseDetails = ({ c, trainer, location }) => {
+const CourseDetails = ({ c, trainer, location, student }) => {
   const [selectedTrainer, setSelectedTrainer] = useState({});
   const [selectedLocation, setSelectedLocation] = useState({});
   const [selectedCity, setSelectedCity] = useState("");
@@ -15,31 +15,27 @@ const CourseDetails = ({ c, trainer, location }) => {
   const [mandatory, setMandatory] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [selectedStudent, setSelectedStudent] = useState([]);
 
   const newStartDate = startDate.toISOString().slice(0, 10);
-  // console.log(newStartDate);
-
   // creates new date function to add days to the start date
   Date.prototype.addDays = function (days) {
-    var date = new Date(this.valueOf());
+    let date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date;
   };
-
-  // const selectEndDate = (startDate) => {
-  //   setEndDate(startDate.addDays(c.duration));
-  // };
-
-  // console.log("this should be new end date", endDate);
-
-  // console.log("this is date prototype", startDate.addDays(1));
-
-  // const newEndDate = ()
+  const selectStudent = (e, student) => {
+    e.preventDefault();
+    let students = [...selectedStudent, student];
+    setSelectedStudent(students);
+    console.log("This is the selected students", selectedStudent);
+  };
 
   const selectTrainer = (e, trainer) => {
     e.preventDefault();
     setSelectedTrainer(trainer);
   };
+
   const selectLocation = (e, location) => {
     e.preventDefault();
     setSelectedLocation(location);
@@ -68,7 +64,8 @@ const CourseDetails = ({ c, trainer, location }) => {
     location,
     selectComment,
     mandatory,
-    newStartDate
+    newStartDate,
+    student
   ) => {
     let payload = {
       course: c.topic,
@@ -77,7 +74,7 @@ const CourseDetails = ({ c, trainer, location }) => {
       trainer: selectedTrainer.firstName + " " + selectedTrainer.lastName,
       startDate: newStartDate,
       endDate: new Date(newStartDate).addDays(c.duration),
-      student: [],
+      students: [...selectedStudent],
       comments: comment,
       mandatory: mandatory,
     };
@@ -86,8 +83,6 @@ const CourseDetails = ({ c, trainer, location }) => {
   };
 
   useEffect(() => {
-    // let uniqueCities = [...new Set(location.map((l) => l.city))];
-
     setCityList([...new Set(location.map((l) => l.city))]);
   }, [location]);
 
@@ -106,7 +101,7 @@ const CourseDetails = ({ c, trainer, location }) => {
             src={`/${c.topic.toLowerCase()}.jpg`}
           />
           <Card.Title>{c.topic}</Card.Title>
-          <Card.Text>{c.name}</Card.Text>
+          <Card.Text> Course name: {c.name}</Card.Text>
           <Card.Text>Difficulty level: {c.level}</Card.Text>
           {c.duration >= 2 ? (
             <Card.Text>Duration: {c.duration} days</Card.Text>
@@ -114,9 +109,29 @@ const CourseDetails = ({ c, trainer, location }) => {
             <Card.Text>Duration: {c.duration} day</Card.Text>
           )}
 
-          {/* <Card.Text>Course duration: {c.duration} days</Card.Text> */}
+          <Dropdown style={{ marginBottom: "10px" }}>
+            <Dropdown.Toggle
+              variant="success"
+              id="dropdown-basic"
+              style={{ minWidth: "175px" }}
+            >
+              Add Students
+            </Dropdown.Toggle>
+            <Dropdown.Menu
+              style={{
+                maxHeight: "200px",
+                overflowY: "scroll",
+              }}
+            >
+              {student.map((student) => (
+                <Dropdown.Item onClick={(e) => selectStudent(e, student)}>
+                  {student.firstName + " " + student.lastName}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+
           {cityList.length !== 0 && (
-            // <p> citylist goes here</p>
             <Dropdown style={{ marginBottom: "10px" }}>
               <Dropdown.Toggle
                 variant="success"
@@ -125,7 +140,6 @@ const CourseDetails = ({ c, trainer, location }) => {
               >
                 {selectedCity ? selectedCity : "Select City"}
               </Dropdown.Toggle>
-
               <Dropdown.Menu
                 style={{
                   maxHeight: "200px",
@@ -237,6 +251,33 @@ const CourseDetails = ({ c, trainer, location }) => {
                     );
                 })}
               </Dropdown.Menu>
+              <Dropdown.Menu
+                style={{
+                  maxHeight: "200px",
+                  overflowY: "scroll",
+                }}
+              >
+                {trainer.map((t) => {
+                  if (selectedLocation.wheelchairAccessible === true)
+                    return (
+                      <Dropdown.Item
+                        key={t._id}
+                        onClick={(e) => selectTrainer(e, t)}
+                      >
+                        {t.firstName + " " + t.lastName}
+                      </Dropdown.Item>
+                    );
+                  else
+                    return t.needWheelchair ? null : (
+                      <Dropdown.Item
+                        key={t._id}
+                        onClick={(e) => selectTrainer(e, t)}
+                      >
+                        {t.firstName + " " + t.lastName}
+                      </Dropdown.Item>
+                    );
+                })}
+              </Dropdown.Menu>
             </Dropdown>
           )}
           <Form>
@@ -275,7 +316,8 @@ const CourseDetails = ({ c, trainer, location }) => {
               mandatory,
               newStartDate,
               endDate,
-              comment
+              comment,
+              selectedStudent
             )
           }
         >
