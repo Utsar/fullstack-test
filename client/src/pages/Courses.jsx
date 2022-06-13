@@ -71,7 +71,7 @@ const Courses = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <>
+    <div className="coursesContainer">
       <div className="pagination">
         <Paginations
           coursesPerPage={coursesPerPage}
@@ -79,7 +79,7 @@ const Courses = () => {
           paginate={paginate}
         />
       </div>
-      <div className="container">
+      <div className="courseContainer">
         {currentCourses.map((c) => (
           <CourseDetails
             key={c._id}
@@ -91,7 +91,7 @@ const Courses = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,18 @@
-.container{
+.coursesContainer{
+height: 100%;
+margin-top: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
+.courseContainer{
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
 }
 .pagination{
     display: flex;
