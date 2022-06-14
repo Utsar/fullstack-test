@@ -4,7 +4,7 @@ import CoursesList from "../../components/courses/CoursesList";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ height: "100vh", width: "100%", overflow: "hidden" }}>
       <Navbar />
       <CoursesList />
     </div>
