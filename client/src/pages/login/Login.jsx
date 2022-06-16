@@ -2,6 +2,7 @@ import "./login.css";
 import { login } from "../../redux/apiCalls.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -35,6 +36,9 @@ const Login = () => {
           >
             LOGIN
           </button>
+          <Link to="/register">
+            <button className="log-inButton">Register</button>
+          </Link>
         </form>
       </div>
     </div>

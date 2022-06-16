@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CourseDetails from "../components/courseDetails/CourseDetails";
 import Paginations from "../components/pagination/Paginations";
+import Navbar from "../components/navbar/Navbar";
 
 const Courses = () => {
   const [course, setCourse] = useState([]);
@@ -71,27 +72,30 @@ const Courses = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="coursesContainer">
-      <div className="pagination">
-        <Paginations
-          coursesPerPage={coursesPerPage}
-          totalCourses={course.length}
-          paginate={paginate}
-        />
-      </div>
-      <div className="courseContainer">
-        {currentCourses.map((c) => (
-          <CourseDetails
-            key={c._id}
-            c={c}
-            trainer={trainer}
-            location={location}
-            student={student}
-            courses={currentCourses}
+    <>
+      <Navbar />
+      <div className="coursesContainer">
+        <div className="pagination">
+          <Paginations
+            coursesPerPage={coursesPerPage}
+            totalCourses={course.length}
+            paginate={paginate}
           />
-        ))}
+        </div>
+        <div className="courseContainer">
+          {currentCourses.map((c) => (
+            <CourseDetails
+              key={c._id}
+              c={c}
+              trainer={trainer}
+              location={location}
+              student={student}
+              courses={currentCourses}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
