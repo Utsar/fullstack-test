@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -9,10 +10,14 @@ const Navbar = () => {
             <h1 className="navLogo">.Utsar | Bookings</h1>
           </div>
           <div className="navCenter">
-            <div className="adminOptions">Brwose upcoming bookings</div>
+            <Link className="link" to="/bookings">
+              <div className="loginButton">Bookings</div>
+            </Link>
           </div>
           <div className="navRight">
-            <button className="loginButton">Login</button>
+            <Link className="link" to="/login">
+              <button className="loginButton">Login</button>
+            </Link>
           </div>
         </div>
       </div>

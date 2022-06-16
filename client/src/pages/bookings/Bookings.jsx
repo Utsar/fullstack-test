@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Container, Row, Table } from "react-bootstrap";
+import Navbar from "../../components/navbar/Navbar";
 
 const Bookings = () => {
   Date.prototype.toShortFormat = function () {
@@ -48,7 +49,8 @@ const Bookings = () => {
 
   return (
     <>
-      <Container className="auctionsContainer">
+      <Navbar />
+      <Container style={{ marginTop: "1rem" }}>
         <Row className="auctions">
           {upcomingBooking
             .map((booking, index) => (

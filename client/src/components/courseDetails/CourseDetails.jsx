@@ -93,7 +93,7 @@ const CourseDetails = ({ c, trainer, location, student }) => {
 
   return (
     <>
-      <Card key={c._id} style={{ width: "18rem", margin: "10px 10px" }}>
+      <Card key={c._id} style={{ width: "20rem", margin: "10px 10px" }}>
         <Card.Body>
           <Card.Img
             variant="top"
@@ -283,18 +283,21 @@ const CourseDetails = ({ c, trainer, location, student }) => {
           <Form>
             <Form.Check
               type="switch"
-              id="custom-switch"
               label="Mandatory"
+              id="custom-switch"
               onChange={(e) => selectMandatory(e)}
             />
           </Form>
           <Form>
             <Form.Group
-              className="mb-3"
+              className="mb-1"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Add comment</Form.Label>
-              <Form.Control type="text" onChange={(e) => selectComment(e)} />
+              <Form.Control
+                type="text"
+                placeholder="add comment"
+                onChange={(e) => selectComment(e)}
+              />
             </Form.Group>
           </Form>
 
